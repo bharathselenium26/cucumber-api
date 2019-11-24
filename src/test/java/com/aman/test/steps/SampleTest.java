@@ -1,4 +1,4 @@
-package com.rocketmiles.test.steps;
+package com.aman.test.steps;
 
 public class SampleTest {
 
