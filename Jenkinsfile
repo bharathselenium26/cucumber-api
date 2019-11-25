@@ -16,7 +16,7 @@ pipeline {
 				checkout scm
 				
 				script{
-					bat(/mvn clean  test /)
+					bat(/mvn clean  install /)
 				}
 				
 				step([$class : 'Publisher', reportFilenamePattern : '**/testng-results.xml'])
@@ -28,14 +28,14 @@ pipeline {
             steps {
                 cucumber buildStatus: "UNSTABLE",
                     fileIncludePattern: "**/cucumber.json",
-                    jsonReportDirectory: 'target'
+                    jsonReportDirectory: 'target/cucumber-report/'
 
             }
 
         }
 		stage("Email"){
 			steps{
-				emailext (to: 'sample@gmail.com', replyTo: 'sample@gmail.com', subject: "Email Report from - '${env.JOB_NAME}' ", body: readFile("target/surefire-reports/emailable-report.html"), mimeType: 'text/html');
+				emailext (to: 'sample@gmail.com', replyTo: 'sample@gmail.com', subject: "Email Report from - '${env.JOB_NAME}' ", body: readFile("target/cucumber-report/cucumber-html-reports/overview-features.html"), mimeType: 'text/html');
 			}
 		}
 	}

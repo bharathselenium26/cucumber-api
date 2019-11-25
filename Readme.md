@@ -14,7 +14,6 @@ Technologies Used:
 Pre-requisites:
 --------------
  Java and Maven to be installed and added to PATH
-
  
 
 Data to be updated:
@@ -24,12 +23,12 @@ Data to be updated:
 How to run
 -------------
 1. Open project folder
-2. Run "mvn test"
+2. Run "mvn clean install'"
 
 Reports
 -------------
 
-Goto automation\target\cucumber-report and open index.html file.
+Goto automation\target\cucumber-report\cucumber-html-reports and open overview-features.html file.
 
 
 

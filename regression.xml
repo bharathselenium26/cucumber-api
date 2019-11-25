@@ -2,7 +2,7 @@
 <suite name="Cucumber-Basic" verbose="1">
 	<test name="basic">
 		<classes>
-			<class name="com.aman.test.steps.SampleTest"></class>
+			<class name="com.aman.test.runners.TestFirstQuery"></class>
 		</classes>
 	</test>
 </suite>

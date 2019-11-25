@@ -94,6 +94,18 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.4</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>4.11.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.1-jre</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -103,11 +115,53 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M3</version>
 				<configuration>
+					<properties>
+						<property>
+							<name>dataproviderthreadcount</name>
+							<value>10</value>
+						</property>
+					</properties>
 					<suiteXmlFiles>
 						<suiteXmlFile>regression.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 
+			</plugin>
+
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>4.11.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+						<version>28.1-jre</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>GraphQL - Execution Report</projectName>
+							<skip>false</skip>
+							<outputDirectory>${project.build.directory}/cucumber-report</outputDirectory>
+							<inputDirectory>${project.build.directory}/cucumber-report</inputDirectory>
+							<jsonFiles>
+								<param>**/*.json</param>
+							</jsonFiles>
+
+							<parallelTesting>true</parallelTesting>
+
+							<checkBuildResult>false</checkBuildResult>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 
