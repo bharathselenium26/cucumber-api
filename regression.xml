@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cucumber-Basic" verbose="1">
+	<test name="basic">
+		<classes>
+			<class name="com.aman.test.steps.SampleTest"></class>
+		</classes>
+	</test>
+</suite>
